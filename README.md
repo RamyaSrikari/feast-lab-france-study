@@ -2,4 +2,4 @@
 
 Customer-facing launch website for Feast Lab, a Kerala-inspired spice-blend brand preparing its first collection for France.
 
-The responsive static shop presentation features four hero blends and a priced 40-item catalogue in euros, alongside the brand story and cooking proposition. It deploys directly from the repository root on Vercel.
+The responsive storefront includes 40 priced products, ingredient detail views, search and category filters, a persistent browser cart, quantity controls and an order-summary workflow. It deploys directly from the repository root on Vercel.

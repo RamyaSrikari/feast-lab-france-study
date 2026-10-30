@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="catalogue.css">
+  <link rel="stylesheet" href="shop.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -17,7 +18,7 @@
     <a class="brand" href="#top" aria-label="Feast Lab home"><span>F</span> Feast Lab</a>
     <button class="menu-button" aria-expanded="false" aria-controls="nav-links">Menu</button>
     <nav id="nav-links" aria-label="Primary navigation">
-      <a href="#products">Featured blends</a><a href="#collection">Shop all products</a><a href="#story">Our story</a><a href="#cook">How to use</a><a class="nav-cta" href="#contact">Order</a>
+      <a href="#products">Featured blends</a><a href="#collection">Shop all products</a><a href="#story">Our story</a><a href="#cook">How to use</a><button class="cart-button" id="open-cart" type="button">Cart <span id="cart-count">0</span></button>
     </nav>
   </header>
   <main id="main">
@@ -56,14 +57,18 @@
         <h2>Shop 40 Kerala flavours.<br><em>Delivered with warmth.</em></h2>
         <p>Our complete Feast Lab pantry is available to order in euros: regional masalas, essential whole and ground spices, and distinctive Kerala favourites for everyday cooking.</p>
       </div>
+      <div class="shop-toolbar reveal" aria-label="Shop controls">
+        <label><span>Search products or ingredients</span><input id="shop-search" type="search" placeholder="Try ‘cardamom’ or ‘fish curry’"></label>
+        <div class="shop-filters" role="group" aria-label="Filter products"><button class="active" data-filter="all">All 40</button><button data-filter="masalas">Masalas</button><button data-filter="spices">Spices</button><button data-filter="specialities">Kerala specialities</button></div>
+      </div>
       <div class="catalogue-grid">
-        <article class="catalogue-group reveal"><p class="catalogue-number">01 · SIGNATURE MASALAS</p><h3>Blends for Kerala favourites</h3><ul>
+        <article class="catalogue-group reveal" data-category="masalas"><p class="catalogue-number">01 · SIGNATURE MASALAS</p><h3>Blends for Kerala favourites</h3><ul>
           <li><span>01</span><div>Kerala Chicken Curry<small>100 g</small></div><b>€5.90</b></li><li><span>02</span><div>Kerala Roast &amp; Fry<small>100 g</small></div><b>€5.90</b></li><li><span>03</span><div>Sambar Masala<small>100 g</small></div><b>€4.90</b></li><li><span>04</span><div>Garam Masala<small>100 g</small></div><b>€4.90</b></li><li><span>05</span><div>Fish Curry Masala<small>100 g</small></div><b>€5.90</b></li><li><span>06</span><div>Meat Masala<small>100 g</small></div><b>€5.90</b></li><li><span>07</span><div>Beef Ularthiyathu Masala<small>100 g</small></div><b>€5.90</b></li><li><span>08</span><div>Vegetable Kurma Masala<small>100 g</small></div><b>€4.90</b></li><li><span>09</span><div>Rasam Powder<small>100 g</small></div><b>€4.50</b></li><li><span>10</span><div>Kerala Biriyani Masala<small>100 g</small></div><b>€5.90</b></li><li><span>11</span><div>Egg Roast Masala<small>100 g</small></div><b>€4.90</b></li><li><span>12</span><div>Avial Spice Blend<small>100 g</small></div><b>€4.90</b></li>
         </ul></article>
-        <article class="catalogue-group reveal"><p class="catalogue-number">02 · SPICE ESSENTIALS</p><h3>Whole and ground staples</h3><ul>
+        <article class="catalogue-group reveal" data-category="spices"><p class="catalogue-number">02 · SPICE ESSENTIALS</p><h3>Whole and ground staples</h3><ul>
           <li><span>13</span><div>Black Pepper<small>75 g</small></div><b>€5.90</b></li><li><span>14</span><div>Green Cardamom<small>50 g</small></div><b>€6.90</b></li><li><span>15</span><div>Cloves<small>50 g</small></div><b>€4.90</b></li><li><span>16</span><div>Cinnamon<small>50 g</small></div><b>€4.50</b></li><li><span>17</span><div>Cumin<small>100 g</small></div><b>€3.90</b></li><li><span>18</span><div>Coriander<small>100 g</small></div><b>€3.90</b></li><li><span>19</span><div>Turmeric<small>100 g</small></div><b>€3.90</b></li><li><span>20</span><div>Fennel<small>100 g</small></div><b>€3.90</b></li><li><span>21</span><div>Fenugreek<small>100 g</small></div><b>€3.50</b></li><li><span>22</span><div>Mustard Seed<small>100 g</small></div><b>€3.50</b></li><li><span>23</span><div>Red Chilli<small>100 g</small></div><b>€4.50</b></li><li><span>24</span><div>Kashmiri Chilli<small>100 g</small></div><b>€4.90</b></li><li><span>25</span><div>Star Anise<small>50 g</small></div><b>€4.90</b></li><li><span>26</span><div>Nutmeg<small>50 g</small></div><b>€4.50</b></li><li><span>27</span><div>Mace<small>25 g</small></div><b>€6.90</b></li><li><span>28</span><div>Asafoetida<small>50 g</small></div><b>€4.50</b></li>
         </ul></article>
-        <article class="catalogue-group reveal"><p class="catalogue-number">03 · KERALA SPECIALITIES</p><h3>Regional pantry favourites</h3><ul>
+        <article class="catalogue-group reveal" data-category="specialities"><p class="catalogue-number">03 · KERALA SPECIALITIES</p><h3>Regional pantry favourites</h3><ul>
           <li><span>29</span><div>Dried Curry Leaves<small>25 g</small></div><b>€3.90</b></li><li><span>30</span><div>Malabar Tamarind / Kudampuli<small>100 g</small></div><b>€5.90</b></li><li><span>31</span><div>Ginger Powder<small>100 g</small></div><b>€4.50</b></li><li><span>32</span><div>Garlic Powder<small>100 g</small></div><b>€4.50</b></li><li><span>33</span><div>Dried Coconut Flakes<small>150 g</small></div><b>€3.90</b></li><li><span>34</span><div>Idiyappam Flour<small>500 g</small></div><b>€4.90</b></li><li><span>35</span><div>Puttu Podi<small>500 g</small></div><b>€4.90</b></li><li><span>36</span><div>Appam Mix<small>500 g</small></div><b>€4.90</b></li><li><span>37</span><div>Kerala Banana Chips<small>150 g</small></div><b>€3.90</b></li><li><span>38</span><div>Tapioca Chips<small>150 g</small></div><b>€3.90</b></li><li><span>39</span><div>Kerala Tea Masala<small>75 g</small></div><b>€4.90</b></li><li><span>40</span><div>Payasam Spice Blend<small>75 g</small></div><b>€4.90</b></li>
         </ul></article>
       </div>
@@ -86,7 +91,17 @@
       <div class="contact-card reveal"><p>Order from Feast Lab</p><h3>Home, retail and wholesale orders</h3><p class="contact-note">All 40 products are available to order. Contact Feast Lab for stock availability, delivery options and larger-volume quotations.</p><a class="button button-dark" href="#collection">Shop the 40-product range</a></div>
     </section>
   </main>
+  <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-labelledby="cart-title" aria-hidden="true">
+    <div class="cart-head"><div><p>YOUR FEAST LAB CART</p><h2 id="cart-title">Your order</h2></div><button id="close-cart" type="button" aria-label="Close cart">×</button></div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-empty" id="cart-empty"><p>Your cart is waiting for something delicious.</p><button type="button" data-close-cart>Browse the collection</button></div>
+    <div class="cart-footer"><div><span>Subtotal</span><strong id="cart-total">€0.00</strong></div><small>Delivery is calculated separately.</small><button class="checkout-button" id="checkout-button" type="button">Prepare order</button></div>
+  </aside>
+  <dialog class="product-dialog" id="product-dialog"><button class="dialog-close" data-dialog-close aria-label="Close">×</button><div id="product-dialog-content"></div></dialog>
+  <dialog class="checkout-dialog" id="checkout-dialog"><button class="dialog-close" data-checkout-close aria-label="Close">×</button><p class="dialog-kicker">FEAST LAB ORDER</p><h2>Ready to order</h2><p>Your cart summary is ready. Copy it and send it through your preferred Feast Lab contact channel.</p><div id="order-summary" class="order-summary"></div><button class="checkout-button" id="copy-order" type="button">Copy order summary</button><p class="copy-status" id="copy-status" role="status"></p></dialog>
   <footer><a class="brand footer-brand" href="#top"><span>F</span> Feast Lab</a><p>Kerala-inspired spice blends for France.</p><p>© <span id="year"></span> Feast Lab</p></footer>
   <script src="app.js"></script>
+  <script src="shop.js"></script>
 </body>
 </html>
