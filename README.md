@@ -1,5 +1,5 @@
 # Feast Lab — Kerala to France Feasibility Study
 
-Presentation website for the Feast Lab market-feasibility thesis and controlled launch plan.
+Interactive presentation website for the Feast Lab market-feasibility thesis and controlled launch plan.
 
-The static production files are in `dist/`. Vercel is configured to publish that directory.
+The site is a responsive static project deployed directly from the repository root on Vercel. It includes the latest 63-page thesis as a downloadable Word document.
