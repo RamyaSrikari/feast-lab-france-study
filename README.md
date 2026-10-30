@@ -1,5 +1,5 @@
-# Feast Lab — Kerala to France Feasibility Study
+# Feast Lab
 
-Interactive presentation website for the Feast Lab market-feasibility thesis and controlled launch plan.
+Customer-facing launch website for Feast Lab, a Kerala-inspired spice-blend brand preparing its first collection for France.
 
-The site is a responsive static project deployed directly from the repository root on Vercel. It includes the latest 63-page thesis as a downloadable Word document.
+The responsive static site presents four featured launch blends, a phased 40-item catalogue, the brand story and cooking proposition. It deploys directly from the repository root on Vercel.
