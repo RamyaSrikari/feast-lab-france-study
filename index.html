@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Feast Lab brings Kerala-inspired spice blends to modern kitchens in France.">
+  <meta name="description" content="Feast Lab brings Kerala-inspired spice blends to modern kitchens across Europe.">
   <title>Feast Lab | Kerala flavour for everyday cooking</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="catalogue.css">
   <link rel="stylesheet" href="shop.css">
+  <link rel="stylesheet" href="storefront-v2.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -18,15 +19,15 @@
     <a class="brand" href="#top" aria-label="Feast Lab home"><span>F</span> Feast Lab</a>
     <button class="menu-button" aria-expanded="false" aria-controls="nav-links">Menu</button>
     <nav id="nav-links" aria-label="Primary navigation">
-      <a href="#products">Featured blends</a><a href="#collection">Shop all products</a><a href="#story">Our story</a><a href="#cook">How to use</a><button class="cart-button" id="open-cart" type="button">Cart <span id="cart-count">0</span></button>
+      <a href="#products">Featured blends</a><a href="#collection">Shop all products</a><a href="#story">Our story</a><a href="#cook">How to use</a><label class="language-control"><span class="sr-only">Language</span><select id="language-select" aria-label="Language"><option value="en">EN</option><option value="fr">FR</option></select></label><button class="cart-button" id="open-cart" type="button">Cart <span id="cart-count">0</span></button>
     </nav>
   </header>
   <main id="main">
     <section class="hero" id="top">
       <div class="hero-copy reveal">
-        <p class="eyebrow">KERALA ROOTS · MADE FOR FRANCE</p>
+        <p class="eyebrow">KERALA ROOTS · MADE FOR EUROPE</p>
         <h1>Big Kerala flavour.<br><em>Beautifully simple.</em></h1>
-        <p class="hero-text">Feast Lab is a new food brand bringing carefully developed Kerala-inspired spice blends to everyday kitchens in France.</p>
+        <p class="hero-text">Feast Lab is a new food brand bringing carefully developed Kerala-inspired spice blends to everyday kitchens across Europe.</p>
         <div class="hero-actions"><a class="button button-dark" href="#products">Shop featured blends</a><a class="button button-light" href="#collection">Shop all 40 products</a></div>
         <ul class="hero-notes"><li>Four launch blends</li><li>Easy cooking guidance</li><li>Made for sharing</li></ul>
       </div>
@@ -72,11 +73,12 @@
           <li><span>29</span><div>Dried Curry Leaves<small>25 g</small></div><b>€3.90</b></li><li><span>30</span><div>Malabar Tamarind / Kudampuli<small>100 g</small></div><b>€5.90</b></li><li><span>31</span><div>Ginger Powder<small>100 g</small></div><b>€4.50</b></li><li><span>32</span><div>Garlic Powder<small>100 g</small></div><b>€4.50</b></li><li><span>33</span><div>Dried Coconut Flakes<small>150 g</small></div><b>€3.90</b></li><li><span>34</span><div>Idiyappam Flour<small>500 g</small></div><b>€4.90</b></li><li><span>35</span><div>Puttu Podi<small>500 g</small></div><b>€4.90</b></li><li><span>36</span><div>Appam Mix<small>500 g</small></div><b>€4.90</b></li><li><span>37</span><div>Kerala Banana Chips<small>150 g</small></div><b>€3.90</b></li><li><span>38</span><div>Tapioca Chips<small>150 g</small></div><b>€3.90</b></li><li><span>39</span><div>Kerala Tea Masala<small>75 g</small></div><b>€4.90</b></li><li><span>40</span><div>Payasam Spice Blend<small>75 g</small></div><b>€4.90</b></li>
         </ul></article>
       </div>
+      <p class="shop-no-results" id="shop-no-results" hidden>No products match your search. Try another product or ingredient.</p>
       <p class="collection-note reveal"><strong>Feast Lab retail range:</strong> Prices are shown in euros per pack. Delivery charges are calculated separately. For larger retail and wholesale orders, contact Feast Lab for a quotation.</p>
     </section>
     <section class="story" id="story">
       <div class="story-image reveal"><img src="feast-lab-products.png" alt="Four colour-coded Feast Lab spice pouch concepts with Kerala spices"><span>Product presentation concept</span></div>
-      <div class="story-copy reveal"><p class="eyebrow light">OUR STORY</p><h2>From Kerala kitchens<br><em>to tables in France.</em></h2><p>Feast Lab begins with the food we know and love: layered spice, patient cooking and the instinct to feed people well. The idea is simple—keep the regional character, make the cooking approachable, and present it with the care it deserves.</p><div class="route-line"><b>KERALA</b><span>→</span><b>FRANCE</b></div></div>
+      <div class="story-copy reveal"><p class="eyebrow light">OUR STORY</p><h2>From Kerala kitchens<br><em>to tables across Europe.</em></h2><p>Feast Lab begins with the food we know and love: layered spice, patient cooking and the instinct to feed people well. The idea is simple—keep the regional character, make the cooking approachable, and present it with the care it deserves.</p><div class="route-line"><b>KERALA</b><span>→</span><b>EUROPE</b></div></div>
     </section>
     <section class="section cook" id="cook">
       <div class="section-heading narrow reveal"><p class="eyebrow">COOK WITH FEAST LAB</p><h2>Good food does not need<br><em>to feel complicated.</em></h2><p>Each blend is designed around a clear moment in the kitchen, with guidance that helps first-time cooks begin confidently and experienced cooks make it their own.</p></div>
@@ -100,8 +102,9 @@
   </aside>
   <dialog class="product-dialog" id="product-dialog"><button class="dialog-close" data-dialog-close aria-label="Close">×</button><div id="product-dialog-content"></div></dialog>
   <dialog class="checkout-dialog" id="checkout-dialog"><button class="dialog-close" data-checkout-close aria-label="Close">×</button><p class="dialog-kicker">FEAST LAB ORDER</p><h2>Ready to order</h2><p>Your cart summary is ready. Copy it and send it through your preferred Feast Lab contact channel.</p><div id="order-summary" class="order-summary"></div><button class="checkout-button" id="copy-order" type="button">Copy order summary</button><p class="copy-status" id="copy-status" role="status"></p></dialog>
-  <footer><a class="brand footer-brand" href="#top"><span>F</span> Feast Lab</a><p>Kerala-inspired spice blends for France.</p><p>© <span id="year"></span> Feast Lab</p></footer>
+  <footer><a class="brand footer-brand" href="#top"><span>F</span> Feast Lab</a><p>Kerala-inspired spice blends for Europe.</p><p>© <span id="year"></span> Feast Lab</p></footer>
   <script src="app.js"></script>
+  <script src="i18n.js"></script>
   <script src="shop.js"></script>
 </body>
 </html>
