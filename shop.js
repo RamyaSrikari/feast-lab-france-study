@@ -52,7 +52,7 @@ const localProduct=p=>window.feastLanguage==='fr'?{...p,name:FR_NAMES[p.id-1],de
 const categoryName=c=>categoryNames[c][window.feastLanguage==='fr'?1:0];
 const productById=id=>PRODUCTS.find(p=>p.id===Number(id));
 const money=value=>new Intl.NumberFormat(window.feastLanguage==='fr'?'fr-FR':'en-IE',{style:'currency',currency:'EUR'}).format(value);
-const packMarkup=p=>`<img class="pack-photo" src="assets/feast-lab-pouch.png" alt="" aria-hidden="true"><span class="pack-label pack-label-${p.c}"><span class="pack-brand-name">FEAST<br>LAB</span><strong>${p.name}</strong><small>${categoryName(p.c)} · ${p.size}</small></span>`;
+const packMarkup=p=>`<img class="pack-photo" src="assets/feast-lab-pouch.png" alt="" aria-hidden="true"><span class="pack-label pack-label-${p.c}"><span class="pack-brand-name">FEAST<br>LAB</span><strong class="${p.name.length>18?'pack-name-long':''}">${p.name}</strong><small>${categoryName(p.c)} · ${p.size}</small></span>`;
 let cart=JSON.parse(localStorage.getItem('feastLabCart')||'{}');
 let wishlist=JSON.parse(localStorage.getItem('feastLabWishlist')||'[]');
 let coupon=localStorage.getItem('feastLabCoupon')||'';
