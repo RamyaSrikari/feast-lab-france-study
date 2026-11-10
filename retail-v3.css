@@ -14,6 +14,7 @@ html{scroll-padding-top:128px}.retail-topbar{min-height:34px;padding:7px clamp(1
 .coupon-field{display:grid!important;gap:6px!important;margin-bottom:12px}.coupon-field>span{font-size:10px!important;font-weight:800!important;letter-spacing:.08em!important;text-transform:uppercase}.coupon-field>div{display:grid!important;grid-template-columns:1fr auto!important}.coupon-field input{min-width:0;padding:9px;border:1px solid #cfd7d3;font:700 12px "DM Sans",sans-serif;text-transform:uppercase}.coupon-field button{border:0;background:#d5a43a;color:#17372f;padding:0 13px;font-weight:800}.coupon-field small{color:#36715e!important;min-height:16px!important}
 
 /* Photographic Feast Lab pouch system */
+.collection .reveal{opacity:1!important;transform:none!important}
 .shop-card-visual{min-height:265px!important;background:linear-gradient(145deg,#f4efe5,#ebe3d4)!important}
 .shop-card-visual:before{width:225px!important;height:225px!important;background:rgba(255,255,255,.72)!important;box-shadow:inset 0 0 0 1px rgba(23,60,49,.05)}
 .shop-card-pack,.detail-pack-shot,.mini-pack.real-pack{position:relative;display:block;background:transparent!important;border:0!important;border-radius:0!important;padding:0!important;color:var(--retail-green)!important;box-shadow:none!important;overflow:visible!important}
