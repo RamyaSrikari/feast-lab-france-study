@@ -12,24 +12,27 @@
   <link rel="stylesheet" href="catalogue.css">
   <link rel="stylesheet" href="shop.css">
   <link rel="stylesheet" href="storefront-v2.css">
+  <link rel="stylesheet" href="retail-v3.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Feast Lab home"><span>F</span> Feast Lab</a>
-    <button class="menu-button" aria-expanded="false" aria-controls="nav-links">Menu</button>
-    <nav id="nav-links" aria-label="Primary navigation">
-      <a href="#products">Featured blends</a><a href="#collection">Shop all products</a><a href="#story">Our story</a><a href="#cook">How to use</a><label class="language-control"><span class="sr-only">Language</span><select id="language-select" aria-label="Language"><option value="en">EN</option><option value="fr">FR</option></select></label><button class="cart-button" id="open-cart" type="button">Cart <span id="cart-count">0</span></button>
-    </nav>
+  <div class="retail-topbar"><p>Free delivery from €49 in selected European countries</p><div><a href="#delivery">Delivery</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div></div>
+  <header class="site-header retail-header">
+    <button class="menu-button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">☰</button>
+    <a class="brand" href="#top" aria-label="Feast Lab home"><span>F</span><strong>Feast Lab</strong><small>KERALA PANTRY</small></a>
+    <form class="global-search" id="global-search-form" role="search"><label class="sr-only" for="global-search">Search Feast Lab</label><input id="global-search" type="search" placeholder="Search masalas, spices and Kerala favourites"><button type="submit" aria-label="Search">⌕</button></form>
+    <div class="header-actions"><button class="wishlist-button" id="open-wishlist" type="button" aria-label="Wishlist">♡ <span id="wishlist-count">0</span></button><label class="language-control"><span class="sr-only">Language</span><select id="language-select" aria-label="Language"><option value="en">EN</option><option value="fr">FR</option></select></label><button class="cart-button" id="open-cart" type="button"><span class="cart-icon">🛒</span> Cart <b id="cart-count">0</b></button></div>
+    <nav id="nav-links" aria-label="Primary navigation"><a href="#products">Best sellers</a><a href="#collection">All products</a><a href="#story">Our story</a><a href="#cook">Recipes &amp; tips</a><a href="#delivery">Delivery</a></nav>
   </header>
+  <nav class="category-nav" aria-label="Shop categories"><a href="#collection" data-shop-category="all">Shop all</a><a href="#collection" data-shop-category="masalas">Masalas &amp; blends</a><a href="#collection" data-shop-category="spices">Whole &amp; ground spices</a><a href="#collection" data-shop-category="specialities">Kerala pantry</a><a href="#products" class="nav-offer">Best sellers</a></nav>
   <main id="main">
     <section class="hero" id="top">
       <div class="hero-copy reveal">
-        <p class="eyebrow">KERALA ROOTS · MADE FOR EUROPE</p>
-        <h1>Big Kerala flavour.<br><em>Beautifully simple.</em></h1>
-        <p class="hero-text">Feast Lab is a new food brand bringing carefully developed Kerala-inspired spice blends to everyday kitchens across Europe.</p>
-        <div class="hero-actions"><a class="button button-dark" href="#products">Shop featured blends</a><a class="button button-light" href="#collection">Shop all 40 products</a></div>
-        <ul class="hero-notes"><li>Four launch blends</li><li>Easy cooking guidance</li><li>Made for sharing</li></ul>
+        <p class="eyebrow">AUTHENTIC KERALA FLAVOURS · DELIVERED ACROSS EUROPE</p>
+        <h1>Your Kerala pantry,<br><em>ready to shop.</em></h1>
+        <p class="hero-text">Masalas, pure spices and regional favourites selected for generous everyday cooking—clear ingredients, fair euro prices and easy delivery.</p>
+        <div class="hero-offer"><span>WELCOME OFFER</span><strong>10% off your first basket</strong><small>Use code <b>HELLOFEAST</b> at checkout</small></div>
+        <div class="hero-actions"><a class="button button-dark" href="#collection">Shop all products</a><a class="button button-light" href="#categories">Browse categories</a></div>
       </div>
       <div class="hero-products reveal" aria-label="Feast Lab launch collection">
         <div class="halo"></div>
@@ -38,12 +41,13 @@
         <div class="pack pack-three"><span class="pack-brand">FEAST<br>LAB</span><b>GARAM<br>MASALA</b><small>AROMATIC BLEND</small></div>
       </div>
     </section>
-    <section class="promise-band"><p>Regional character</p><span>✦</span><p>Everyday ease</p><span>✦</span><p>Modern presentation</p><span>✦</span><p>Warm hospitality</p></section>
+    <section class="retail-benefits" id="delivery"><article><span>🚚</span><div><b>European delivery</b><small>Tracked shipping across selected countries</small></div></article><article><span>🌿</span><div><b>Ingredient transparency</b><small>See every spice before you add to basket</small></div></article><article><span>🔒</span><div><b>Secure checkout ready</b><small>Card and local payments coming next</small></div></article><article><span>💬</span><div><b>Friendly support</b><small>Help with products, recipes and orders</small></div></article></section>
+    <section class="retail-categories" id="categories"><div class="retail-section-head"><div><p>SHOP BY CATEGORY</p><h2>Everything for a Kerala kitchen</h2></div><a href="#collection" data-shop-category="all">View all 40 products →</a></div><div class="category-cards"><a href="#collection" data-shop-category="masalas" class="category-card masala-card"><span>🍛</span><div><b>Signature masalas</b><small>12 blends for curries, roasts and rice</small></div></a><a href="#collection" data-shop-category="spices" class="category-card spice-card"><span>🌶️</span><div><b>Spice essentials</b><small>16 whole and ground staples</small></div></a><a href="#collection" data-shop-category="specialities" class="category-card pantry-card"><span>🥥</span><div><b>Kerala pantry</b><small>12 regional flours, snacks and favourites</small></div></a></div></section>
     <section class="section products" id="products">
       <div class="section-heading reveal">
-        <p class="eyebrow">THE FIRST COLLECTION</p>
-        <h2>Four blends.<br><em>Many good meals.</em></h2>
-        <p>Built around familiar dishes and clear uses, the Feast Lab range helps home cooks create generous, aromatic food without a crowded spice cupboard.</p>
+        <p class="eyebrow">CUSTOMER FAVOURITES</p>
+        <h2>Start with our<br><em>best sellers.</em></h2>
+        <p>Four dependable blends for the dishes people cook most—easy to understand, simple to use and ready to add straight to your basket.</p>
       </div>
       <div class="product-grid">
         <article class="product-card green reveal"><div class="mini-pack"><span>FEAST<br>LAB</span><b>01</b></div><p class="product-no">01 · HERO BLEND</p><h3>Kerala Chicken Curry</h3><p>Warm, rounded and deeply aromatic—a dependable blend for comforting Kerala-style chicken curry.</p><div class="product-price"><b>€5.90</b><span>100 g pack</span></div><div class="tags"><span>Chicken</span><span>Coconut</span><span>One-pot meals</span></div></article>
@@ -54,9 +58,9 @@
     </section>
     <section class="collection" id="collection">
       <div class="collection-intro reveal">
-        <p class="eyebrow light">THE FEAST LAB PANTRY</p>
-        <h2>Shop 40 Kerala flavours.<br><em>Delivered with warmth.</em></h2>
-        <p>Our complete Feast Lab pantry is available to order in euros: regional masalas, essential whole and ground spices, and distinctive Kerala favourites for everyday cooking.</p>
+        <p class="eyebrow light">SHOP THE FEAST LAB PANTRY</p>
+        <h2>40 Kerala favourites.<br><em>One easy basket.</em></h2>
+        <p>Search, filter, check ingredients, choose quantity and add products directly to your basket.</p>
       </div>
       <div class="shop-toolbar reveal" aria-label="Shop controls">
         <label><span>Search products or ingredients</span><input id="shop-search" type="search" placeholder="Try ‘cardamom’ or ‘fish curry’"></label>
@@ -76,6 +80,7 @@
       <p class="shop-no-results" id="shop-no-results" hidden>No products match your search. Try another product or ingredient.</p>
       <p class="collection-note reveal"><strong>Feast Lab retail range:</strong> Prices are shown in euros per pack. Delivery charges are calculated separately. For larger retail and wholesale orders, contact Feast Lab for a quotation.</p>
     </section>
+    <section class="retail-trust" id="faq"><div><p class="eyebrow">WHY SHOP FEAST LAB</p><h2>A small pantry with<br><em>clear promises.</em></h2></div><div class="trust-grid"><article><b>40</b><h3>Focused products</h3><p>No endless aisles—only useful Kerala masalas, spices and pantry favourites.</p></article><article><b>2</b><h3>Languages</h3><p>Shop in English or French, with product names and ingredient details translated.</p></article><article><b>€</b><h3>Transparent prices</h3><p>Clear per-pack euro pricing, with delivery shown separately before payment.</p></article><article><b>♡</b><h3>Save favourites</h3><p>Keep a wishlist in your browser and return to the products you love.</p></article></div></section>
     <section class="story" id="story">
       <div class="story-image reveal"><img src="feast-lab-products.png" alt="Four colour-coded Feast Lab spice pouch concepts with Kerala spices"><span>Product presentation concept</span></div>
       <div class="story-copy reveal"><p class="eyebrow light">OUR STORY</p><h2>From Kerala kitchens<br><em>to tables across Europe.</em></h2><p>Feast Lab begins with the food we know and love: layered spice, patient cooking and the instinct to feed people well. The idea is simple—keep the regional character, make the cooking approachable, and present it with the care it deserves.</p><div class="route-line"><b>KERALA</b><span>→</span><b>EUROPE</b></div></div>
@@ -98,13 +103,15 @@
     <div class="cart-head"><div><p>YOUR FEAST LAB CART</p><h2 id="cart-title">Your order</h2></div><button id="close-cart" type="button" aria-label="Close cart">×</button></div>
     <div id="cart-items" class="cart-items"></div>
     <div class="cart-empty" id="cart-empty"><p>Your cart is waiting for something delicious.</p><button type="button" data-close-cart>Browse the collection</button></div>
-    <div class="cart-footer"><div><span>Subtotal</span><strong id="cart-total">€0.00</strong></div><small>Delivery is calculated separately.</small><button class="checkout-button" id="checkout-button" type="button">Prepare order</button></div>
+    <div class="cart-footer"><label class="coupon-field"><span>Welcome code</span><div><input id="coupon-code" type="text" placeholder="HELLOFEAST"><button id="apply-coupon" type="button">Apply</button></div><small id="coupon-status" role="status"></small></label><div><span id="cart-total-label">Subtotal</span><strong id="cart-total">€0.00</strong></div><small>Delivery is calculated separately.</small><button class="checkout-button" id="checkout-button" type="button">Prepare order</button></div>
   </aside>
   <dialog class="product-dialog" id="product-dialog"><button class="dialog-close" data-dialog-close aria-label="Close">×</button><div id="product-dialog-content"></div></dialog>
   <dialog class="checkout-dialog" id="checkout-dialog"><button class="dialog-close" data-checkout-close aria-label="Close">×</button><p class="dialog-kicker">FEAST LAB ORDER</p><h2>Ready to order</h2><p>Your cart summary is ready. Copy it and send it through your preferred Feast Lab contact channel.</p><div id="order-summary" class="order-summary"></div><button class="checkout-button" id="copy-order" type="button">Copy order summary</button><p class="copy-status" id="copy-status" role="status"></p></dialog>
-  <footer><a class="brand footer-brand" href="#top"><span>F</span> Feast Lab</a><p>Kerala-inspired spice blends for Europe.</p><p>© <span id="year"></span> Feast Lab</p></footer>
+  <nav class="mobile-shop-nav" aria-label="Mobile shop navigation"><a href="#top">⌂<span>Home</span></a><a href="#categories">▦<span>Categories</span></a><a href="#collection">⌕<span>Search</span></a><button id="mobile-cart" type="button">🛒<span>Cart</span></button></nav>
+  <footer class="retail-footer"><div class="footer-main"><div class="footer-brand-block"><a class="brand footer-brand" href="#top"><span>F</span><strong>Feast Lab</strong></a><p>Kerala-inspired masalas, spices and pantry favourites for kitchens across Europe.</p><div class="footer-social"><span>Instagram</span><span>Facebook</span><span>Pinterest</span></div></div><div><h3>Shop</h3><a href="#collection" data-shop-category="masalas">Masalas &amp; blends</a><a href="#collection" data-shop-category="spices">Spice essentials</a><a href="#collection" data-shop-category="specialities">Kerala pantry</a><a href="#products">Best sellers</a></div><div><h3>Help</h3><a href="#delivery">Delivery information</a><a href="#faq">Frequently asked questions</a><a href="#contact">Contact us</a><a href="#">Returns &amp; refunds</a></div><div><h3>Stay in the loop</h3><p>Recipes, product news and Kerala kitchen inspiration.</p><form class="newsletter-form"><input type="email" placeholder="Email address" aria-label="Email address"><button type="button">Join</button></form><small>No spam. Unsubscribe anytime.</small></div></div><div class="footer-bottom"><span>© <span id="year"></span> Feast Lab</span><span>Secure payments · Visa · Mastercard · Apple Pay</span><span>English · Français</span></div></footer>
   <script src="app.js"></script>
   <script src="i18n.js"></script>
   <script src="shop.js"></script>
+  <script src="retail-v3.js"></script>
 </body>
 </html>

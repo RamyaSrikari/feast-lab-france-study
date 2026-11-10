@@ -53,6 +53,8 @@ const categoryName=c=>categoryNames[c][window.feastLanguage==='fr'?1:0];
 const productById=id=>PRODUCTS.find(p=>p.id===Number(id));
 const money=value=>new Intl.NumberFormat(window.feastLanguage==='fr'?'fr-FR':'en-IE',{style:'currency',currency:'EUR'}).format(value);
 let cart=JSON.parse(localStorage.getItem('feastLabCart')||'{}');
+let wishlist=JSON.parse(localStorage.getItem('feastLabWishlist')||'[]');
+let coupon=localStorage.getItem('feastLabCoupon')||'';
 let activeFilter='all';
 
 function renderShop(){
@@ -60,7 +62,7 @@ function renderShop(){
     const category=group.dataset.category;
     const list=group.querySelector('ul');
     list.className='shop-list';
-    list.innerHTML=PRODUCTS.filter(p=>p.c===category).map(raw=>{const p=localProduct(raw);const search=normalize([raw.name,...raw.ing,p.name,...p.ing].join(' '));return `<li class="shop-product" data-product-id="${p.id}" data-search="${search}"><div class="shop-card-pack"><b>FEAST<br>LAB</b><small>${String(p.id).padStart(2,'0')} · KERALA</small></div><div class="shop-product-body"><div class="shop-product-top"><span class="shop-product-number">${String(p.id).padStart(2,'0')}</span><span class="shop-product-category">${categoryName(p.c)}</span></div><h4>${p.name}</h4><p class="shop-product-desc">${p.desc}</p><div class="shop-product-meta">${p.size} · ${p.ing.length===1?tr('Single ingredient','Ingrédient unique'):p.ing.length+' '+tr('spices & ingredients','épices et ingrédients')}</div><div class="shop-product-price">${money(p.price)}</div><div class="shop-product-actions"><button class="view-product" data-id="${p.id}" type="button">${tr('Ingredients','Ingrédients')}</button><button class="add-cart" data-id="${p.id}" type="button">${tr('Add to cart','Ajouter au panier')}</button></div></div></li>`}).join('');
+    list.innerHTML=PRODUCTS.filter(p=>p.c===category).map(raw=>{const p=localProduct(raw);const search=normalize([raw.name,...raw.ing,p.name,...p.ing].join(' '));const saved=wishlist.includes(p.id);const badge=p.id<=4?tr('BEST SELLER','MEILLEURE VENTE'):(p.id%7===0?tr('POPULAR','POPULAIRE'):'');return `<li class="shop-product" data-product-id="${p.id}" data-search="${search}"><div class="shop-card-visual">${badge?`<span class="shop-card-badge">${badge}</span>`:''}<button class="wishlist-toggle${saved?' active':''}" data-wishlist="${p.id}" type="button" aria-label="${tr('Save to wishlist','Ajouter aux favoris')}">${saved?'♥':'♡'}</button><div class="shop-card-pack"><b>FEAST<br>LAB</b><small>${p.name}</small></div></div><div class="shop-product-body"><div class="shop-product-top"><span class="shop-product-number">${String(p.id).padStart(2,'0')}</span><span class="shop-product-category">${categoryName(p.c)}</span></div><h4>${p.name}</h4><p class="shop-product-desc">${p.desc}</p><div class="shop-product-meta">${p.size} · ${p.ing.length===1?tr('Single ingredient','Ingrédient unique'):p.ing.length+' '+tr('spices & ingredients','épices et ingrédients')}</div><div class="shop-product-price">${money(p.price)}</div><div class="shop-product-actions"><button class="view-product" data-id="${p.id}" type="button">${tr('View ingredients','Voir les ingrédients')}</button><div class="shop-buy-row"><div class="card-quantity" aria-label="${tr('Quantity','Quantité')}"><button data-card-qty="-1" type="button" aria-label="${tr('Decrease quantity','Réduire la quantité')}">−</button><output>1</output><button data-card-qty="1" type="button" aria-label="${tr('Increase quantity','Augmenter la quantité')}">+</button></div><button class="add-cart" data-id="${p.id}" type="button">${tr('Add to basket','Ajouter au panier')}</button></div></div></div></li>`}).join('');
   });
   document.querySelectorAll('.product-card').forEach((card,index)=>{if(index<4){card.querySelector('.product-price b').textContent=money(PRODUCTS[index].price);card.querySelector('.featured-add')?.remove();card.insertAdjacentHTML('beforeend',`<button class="featured-add" data-id="${index+1}" type="button">${tr('Add to cart','Ajouter au panier')} · ${money(PRODUCTS[index].price)}</button>`);}});
 }
@@ -72,27 +74,36 @@ function openProduct(id){
 }
 
 function saveCart(){localStorage.setItem('feastLabCart',JSON.stringify(cart));renderCart();}
-function addToCart(id){cart[id]=(cart[id]||0)+1;saveCart();openCart();}
+function addToCart(id,qty=1){cart[id]=(cart[id]||0)+qty;saveCart();openCart();}
+function toggleWishlist(id){id=Number(id);wishlist=wishlist.includes(id)?wishlist.filter(x=>x!==id):[...wishlist,id];localStorage.setItem('feastLabWishlist',JSON.stringify(wishlist));document.querySelector('#wishlist-count').textContent=wishlist.length;renderShop();applyFilters();}
 function changeQty(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];saveCart();}
 function cartEntries(){return Object.entries(cart).map(([id,qty])=>({p:productById(id),qty})).filter(x=>x.p);}
 function renderCart(){
-  const entries=cartEntries(); const total=entries.reduce((sum,x)=>sum+x.p.price*x.qty,0); const count=entries.reduce((sum,x)=>sum+x.qty,0);
+  const entries=cartEntries(); const subtotal=entries.reduce((sum,x)=>sum+x.p.price*x.qty,0);const total=coupon==='HELLOFEAST'?subtotal*.9:subtotal; const count=entries.reduce((sum,x)=>sum+x.qty,0);
   document.querySelector('#cart-count').textContent=count;
+  document.querySelector('#wishlist-count').textContent=wishlist.length;
   document.querySelector('#cart-total').textContent=money(total);
+  document.querySelector('#cart-total-label').textContent=coupon==='HELLOFEAST'?tr('Total after 10% welcome discount','Total après remise de bienvenue de 10 %'):tr('Subtotal','Sous-total');
+  document.querySelector('#coupon-code').value=coupon;document.querySelector('#coupon-status').textContent=coupon==='HELLOFEAST'?tr('Welcome discount applied.','Remise de bienvenue appliquée.'):'';
   document.querySelector('#cart-empty').hidden=entries.length>0;
   document.querySelector('#checkout-button').disabled=entries.length===0;
   document.querySelector('#cart-items').innerHTML=entries.map(({p:raw,qty})=>{const p=localProduct(raw);return `<div class="cart-line"><div><h3>${p.name}</h3><p>${p.size} · ${money(p.price)} ${tr('each','l’unité')}</p><div class="cart-controls"><button data-qty="-1" data-id="${p.id}" aria-label="Remove one">−</button><strong>${qty}</strong><button data-qty="1" data-id="${p.id}" aria-label="Add one">+</button><button class="remove-item" data-remove="${p.id}">${tr('Remove','Supprimer')}</button></div></div><div class="cart-line-total">${money(p.price*qty)}</div></div>`}).join('');
 }
 function openCart(){document.querySelector('#drawer-backdrop').hidden=false;document.querySelector('#cart-drawer').classList.add('open');document.querySelector('#cart-drawer').setAttribute('aria-hidden','false');}
 function closeCart(){document.querySelector('#drawer-backdrop').hidden=true;document.querySelector('#cart-drawer').classList.remove('open');document.querySelector('#cart-drawer').setAttribute('aria-hidden','true');}
-function orderText(){const entries=cartEntries();const total=entries.reduce((sum,x)=>sum+x.p.price*x.qty,0);return `${tr('FEAST LAB ORDER REQUEST','DEMANDE DE COMMANDE FEAST LAB')}\n\n${entries.map(({p:raw,qty})=>{const p=localProduct(raw);return `${qty} × ${p.name} (${p.size}) — ${money(p.price*qty)}`}).join('\n')}\n\n${tr('Subtotal','Sous-total')}: ${money(total)}\n${tr('Delivery: to be confirmed','Livraison : à confirmer')}`}
+function orderText(){const entries=cartEntries();const subtotal=entries.reduce((sum,x)=>sum+x.p.price*x.qty,0);const total=coupon==='HELLOFEAST'?subtotal*.9:subtotal;return `${tr('FEAST LAB ORDER REQUEST','DEMANDE DE COMMANDE FEAST LAB')}\n\n${entries.map(({p:raw,qty})=>{const p=localProduct(raw);return `${qty} × ${p.name} (${p.size}) — ${money(p.price*qty)}`}).join('\n')}\n\n${tr('Subtotal','Sous-total')}: ${money(subtotal)}${coupon==='HELLOFEAST'?`\n${tr('Welcome discount (10%)','Remise de bienvenue (10 %)')}: −${money(subtotal*.1)}\n${tr('Total','Total')}: ${money(total)}`:''}\n${tr('Delivery: to be confirmed','Livraison : à confirmer')}`}
 const normalize=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
-function applyFilters(){const q=normalize(document.querySelector('#shop-search').value);let totalVisible=0;document.querySelectorAll('.catalogue-group').forEach(group=>{let visible=0;group.querySelectorAll('.shop-product').forEach(card=>{const show=(activeFilter==='all'||group.dataset.category===activeFilter)&&(!q||card.dataset.search.includes(q));card.hidden=!show;if(show){visible++;totalVisible++;}});group.classList.toggle('is-hidden',visible===0);});document.querySelector('#shop-no-results').hidden=totalVisible>0;}
+function applyFilters(){const q=normalize(document.querySelector('#shop-search').value);let totalVisible=0;document.querySelectorAll('.catalogue-group').forEach(group=>{let visible=0;group.querySelectorAll('.shop-product').forEach(card=>{const categoryMatch=activeFilter==='all'||group.dataset.category===activeFilter||(activeFilter==='wishlist'&&wishlist.includes(Number(card.dataset.productId)));const show=categoryMatch&&(!q||card.dataset.search.includes(q));card.hidden=!show;if(show){visible++;totalVisible++;}});group.classList.toggle('is-hidden',visible===0);});document.querySelector('#shop-no-results').hidden=totalVisible>0;}
+window.feastSetCategory=category=>{activeFilter=category;const shopInput=document.querySelector('#shop-search');if(shopInput)shopInput.value='';const globalInput=document.querySelector('#global-search');if(globalInput)globalInput.value='';document.querySelectorAll('.shop-filters button').forEach(b=>b.classList.toggle('active',b.dataset.filter===category));applyFilters();};
+window.feastSearch=query=>{const input=document.querySelector('#shop-search');input.value=query;activeFilter='all';document.querySelectorAll('.shop-filters button').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));applyFilters();};
+window.feastShowWishlist=()=>{activeFilter='wishlist';document.querySelectorAll('.shop-filters button').forEach(b=>b.classList.remove('active'));applyFilters();};
 
 renderShop();renderCart();
 document.addEventListener('click',event=>{
   const view=event.target.closest('.view-product'); if(view)openProduct(view.dataset.id);
-  const add=event.target.closest('.add-cart,.featured-add,.dialog-add'); if(add){addToCart(add.dataset.id);const dialog=event.target.closest('dialog');if(dialog)dialog.close();}
+  const add=event.target.closest('.add-cart,.featured-add,.dialog-add'); if(add){const card=add.closest('.shop-product');const qty=card?Number(card.querySelector('.card-quantity output')?.textContent||1):1;addToCart(add.dataset.id,qty);const dialog=event.target.closest('dialog');if(dialog)dialog.close();}
+  const cardQty=event.target.closest('[data-card-qty]');if(cardQty){const output=cardQty.parentElement.querySelector('output');output.textContent=Math.max(1,Math.min(12,Number(output.textContent)+Number(cardQty.dataset.cardQty)));}
+  const wish=event.target.closest('[data-wishlist]');if(wish)toggleWishlist(wish.dataset.wishlist);
   const qty=event.target.closest('[data-qty]'); if(qty)changeQty(qty.dataset.id,Number(qty.dataset.qty));
   const remove=event.target.closest('[data-remove]'); if(remove){delete cart[remove.dataset.remove];saveCart();}
   if(event.target.matches('[data-dialog-close]'))document.querySelector('#product-dialog').close();
@@ -103,5 +114,6 @@ document.querySelector('#open-cart').addEventListener('click',openCart);document
 document.querySelector('#shop-search').addEventListener('input',()=>{activeFilter='all';document.querySelectorAll('.shop-filters button').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));applyFilters();});
 document.querySelectorAll('.shop-filters button').forEach(button=>button.addEventListener('click',()=>{activeFilter=button.dataset.filter;document.querySelectorAll('.shop-filters button').forEach(b=>b.classList.toggle('active',b===button));applyFilters();}));
 document.querySelector('#checkout-button').addEventListener('click',()=>{const text=orderText();document.querySelector('#order-summary').textContent=text;closeCart();document.querySelector('#checkout-dialog').showModal();});
+document.querySelector('#apply-coupon').addEventListener('click',()=>{const code=document.querySelector('#coupon-code').value.trim().toUpperCase();if(code==='HELLOFEAST'){coupon=code;localStorage.setItem('feastLabCoupon',code);renderCart();}else{document.querySelector('#coupon-status').textContent=tr('Code not recognised.','Code non reconnu.');}});
 document.querySelector('#copy-order').addEventListener('click',async()=>{await navigator.clipboard.writeText(orderText());document.querySelector('#copy-status').textContent='Order summary copied. Send it to Feast Lab through your preferred contact channel.';});
 window.addEventListener('feast-language-change',()=>{renderShop();renderCart();applyFilters();});
