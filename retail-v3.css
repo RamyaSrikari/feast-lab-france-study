@@ -26,12 +26,12 @@ html{scroll-padding-top:128px}.retail-topbar{min-height:34px;padding:7px clamp(1
 .pack-label-specialities{box-shadow:0 0 0 4px #315d4c,0 4px 8px rgba(28,42,36,.16)}
 .pack-brand-name{font:700 11px/.82 "Playfair Display",serif;letter-spacing:.06em}
 .pack-label strong{display:block;max-width:100%;margin:7px 0 4px;font:700 11.5px/.94 "Playfair Display",serif;text-transform:uppercase;letter-spacing:-.015em;overflow-wrap:anywhere}.pack-label strong.pack-name-long{font-size:9px;line-height:.98}
-.pack-label small{display:block;font:700 5.8px/1.15 "DM Sans",sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#9a671b}
+.pack-label small{display:block;margin-top:1px;font:700 6.2px/1 "DM Sans",sans-serif;text-transform:uppercase;letter-spacing:.13em;color:#9a671b}
 .mini-pack.real-pack{width:145px!important;height:205px!important;margin:0 auto 24px!important;filter:drop-shadow(0 15px 12px rgba(27,43,37,.18))}
 .mini-pack.real-pack .pack-brand-name,.mini-pack.real-pack .pack-label strong,.mini-pack.real-pack .pack-label small{position:static;margin-left:auto;margin-right:auto}
 .mini-pack.real-pack .pack-brand-name{font-size:11px}
 .mini-pack.real-pack .pack-label strong{font-size:11px;line-height:.98;margin-top:10px;margin-bottom:6px}
-.mini-pack.real-pack .pack-label small{font-size:5px;margin-top:auto}
+.mini-pack.real-pack .pack-label small{font-size:5.5px;margin-top:1px}
 .detail-pack{background:linear-gradient(145deg,#f4efe5,#e5dccb)!important}
 .detail-pack-shot{width:172px;height:242px;filter:drop-shadow(0 17px 14px rgba(10,35,28,.24))}
 .detail-pack-shot .pack-label strong{font-size:10px}
