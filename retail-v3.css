@@ -37,3 +37,6 @@ html{scroll-padding-top:128px}.retail-topbar{min-height:34px;padding:7px clamp(1
 .detail-pack-shot .pack-label strong{font-size:10px}
 
 @media(max-width:700px){.shop-card-visual{min-height:250px!important}.shop-card-pack{width:156px!important;height:214px!important}.pack-label{padding:9px 5px 6px}.pack-brand-name{font-size:9.5px}.pack-label strong{font-size:10.5px}.pack-label strong.pack-name-long{font-size:8.5px}.shop-filters{scrollbar-width:none}.shop-filters::-webkit-scrollbar{display:none}}
+
+.service-details{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#d9dedb;padding:1px}.service-details article{scroll-margin-top:150px;background:#fff;padding:50px clamp(24px,4vw,58px)}.service-details article>p:first-child{margin:0 0 12px;color:#a56c17;font-size:10px;font-weight:800;letter-spacing:.14em}.service-details h2{margin:0 0 16px;color:#173c31;font:600 28px/1.08 "Playfair Display",serif}.service-details article>p:last-child{margin:0;color:#5f746c;font-size:13px;line-height:1.65}.footer-social{color:#d5a43a!important}.retail-footer a:hover{text-decoration:underline}.checkout-dialog{overflow:auto}
+@media(max-width:900px){.service-details{grid-template-columns:1fr}.service-details article{padding:36px 24px}}
